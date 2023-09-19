@@ -35,13 +35,13 @@ function startApp(name){
  */
 function onDataReceived(text) {
 
-  const txt = text.split(" ")[0].trim();
+  const txt = text.split(" ")[0].trim(); //this splits the entered string , takes the first index and removes white spaces
   // console.log(text.split(" ")[0].trim());
   if (text === 'quit\n' || text === 'exit\n') {
     quit();
   }
   else if(txt === 'hello') {
-    hello(text.replace('\n',""));
+    hello(text.replace('\n',""));//removes \n from the entered text
   }
   else if(text === 'help\n'){
     help();
@@ -69,13 +69,13 @@ function unknownCommand(c){
  *
  * @returns {void}
  */
-function hello(text){
-  console.log(text + "!");
+function hello(text){// functio hello takes text as argument and return it with '!'
+  console.log(text + "!"); 
 }
 
 // this function lists all possible commands
 function help(){
-  console.log('list of commands: \n hello \n help \n quit \n exit \n')
+  console.log('list of commands: \n hello \n hello + your customized text \n help \n quit \n exit \n')
 }
 
 /**
