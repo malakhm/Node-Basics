@@ -70,7 +70,7 @@ function hello(){
   console.log('hello!')
 }
 
-
+// this function lists all possible commands
 function help(){
   console.log('list of commands: \n hello \n help \n quit \n exit \n')
 }
