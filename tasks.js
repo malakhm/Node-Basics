@@ -46,6 +46,12 @@ function onDataReceived(text) {
   else if(text === 'help\n'){
     help();
   }
+  else if(text === 'add\n'){
+    add();
+  }
+  else if(text === 'list\n'){
+    list();
+  }
   else{
     unknownCommand(text);
   }
@@ -72,6 +78,38 @@ function unknownCommand(c){
 function hello(text){// functio hello takes text as argument and return it with '!'
   console.log(text + "!"); 
 }
+
+/**
+ * @returns {void}
+ */
+
+function list(task){
+
+  for(let i = 0; i < task.length; i++){
+    console.log(i+1 + "[ ]"+task[i]);
+  }
+ 
+}
+/**
+ * @returns {void}
+ */
+
+function add(){
+
+}
+
+/**
+ * @returns {void}
+ */
+
+function remove(){
+
+}
+
+/**
+ * @returns {void}
+ */
+
 
 // this function lists all possible commands
 function help(){
