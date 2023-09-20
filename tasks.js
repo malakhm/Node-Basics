@@ -33,10 +33,15 @@ function startApp(name){
  * @param  {string} text data typed by the user
  * @returns {void}
  */
-function onDataReceived(text) {
 
+var listOfTasks = [];
+function onDataReceived(text) {
+  
   const txt = text.split(" ")[0].trim(); //this splits the entered string , takes the first index and removes white spaces
   // console.log(text.split(" ")[0].trim());
+  // console.log(text.substring(3));
+  console.log();
+  
   if (text === 'quit\n' || text === 'exit\n') {
     quit();
   }
@@ -46,8 +51,9 @@ function onDataReceived(text) {
   else if(text === 'help\n'){
     help();
   }
-  else if(text === 'add\n'){
-    add();
+  else if(txt === 'add'){
+    var taskToAdd = text.substring(3).trim();
+    add(taskToAdd);
   }
   else if(text === 'list\n'){
     list();
@@ -83,10 +89,9 @@ function hello(text){// functio hello takes text as argument and return it with 
  * @returns {void}
  */
 
-function list(task){
-
-  for(let i = 0; i < task.length; i++){
-    console.log(i+1 + "[ ]"+task[i]);
+function list(){
+  for(let i = 0; i < listOfTasks.length; i++){
+    console.log(i+1 + "[ ]"+listOfTasks[i]);
   }
  
 }
@@ -94,7 +99,10 @@ function list(task){
  * @returns {void}
  */
 
-function add(){
+function add(task){
+  listOfTasks.push(task);
+  console.log('task added');
+
 
 }
 
@@ -103,7 +111,7 @@ function add(){
  */
 
 function remove(){
-
+  
 }
 
 /**
