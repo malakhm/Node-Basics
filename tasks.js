@@ -54,23 +54,23 @@ function onDataReceived(text) {
     help();
   }
   else if(txt === 'add'){
-    var taskToAdd = text.substring(3).trim();
+    var taskToAdd = text.substring(3).trim();//everything after the word => "add"
     add(taskToAdd);
   }
   else if(text === 'list\n'){
     list();
   }
   else if(txt === 'remove'){
-    var taskToRemove = text.substring(6).trim();
+    var taskToRemove = text.substring(6).trim();// everything after the word =>"remove"
     remove(taskToRemove);
   }
   else if(txt === 'edit'){
-    var newTask = text.substring(4).trim();
+    var newTask = text.substring(4).trim();// everything after the word =>"edit"
     edit(newTask);
   }
 
   else if (txt === 'check'){
-    var taskToCheck = text.substring(5).trim();
+    var taskToCheck = text.substring(5).trim();// everything after the word =>"check"
     check(taskToCheck);
   }
 
@@ -109,7 +109,7 @@ function hello(text){// functio hello takes text as argument and return it with 
 function list(){// this functio lists  all the tasks by accending order
   for(let i = 0; i < listOfTasks.list.length; i++){ // 'loop through the tasks and adds a
                                                 //number to each task with a specific format => 1 [] drink milk
-    if(listOfTasks.list[i].status == false){
+    if(listOfTasks.list[i].status == false){// checks whether the task's status is true or false and prints the corresponding output
       console.log(i+1 + "[ ]" + listOfTasks.list[i].name);
     }else{console.log(i+1 + "[✓]" + listOfTasks.list[i].name);}
     
@@ -126,7 +126,7 @@ function add(task){  // this function adds tasks to the list
     console.log('ERROR: task cannot be empty');
     return;
   }
-  listOfTasks.list.push({name:task,status:false});
+  listOfTasks.list.push({name:task,status:false});// adds a new task (status is false by default)
   console.log("list of task ",listOfTasks.list)
   console.log('task: '+ task + ' added successfully');
 
@@ -154,7 +154,7 @@ function remove(taskNumber){
   
 
 }
-
+//function that takes a task as parameter and overwrites the old task at a specific index(depending on the input)
 function edit(newtask){
 
   if(newtask == "" || newtask == " "){
@@ -162,20 +162,20 @@ function edit(newtask){
     return;
   }
 
-  else if(isNaN(newtask[0]))
+  else if(isNaN(newtask[0]))// if the firt element in the task is not a number, then replace the most recent task with this new task
   {
     console.log(listOfTasks.list[listOfTasks.list.length-1].name)
     listOfTasks.list[listOfTasks.list.length-1].name = newtask
     console.log('task edited:  '+ listOfTasks.list.name);
   }
 
-  else if(newtask[0] > listOfTasks.list.length)
+  else if(newtask[0] > listOfTasks.list.length)// throw an error if the entered number is out of range (doesn't exist)
   {
     console.log("Task doesn't exist, if you wanna add a new task, insert add + your task!!");
   }
   else
   {
-    listOfTasks.list[newtask[0]-1].name = newtask.substring(1).trim();
+    listOfTasks.list[newtask[0]-1].name = newtask.substring(1).trim();//replace the old task by the new task
     
   }
 
@@ -188,11 +188,11 @@ function check(number){
   if(number == "" || number == " "){
     console.log("ERROR: please enter a valid number");
   }
-  else if(number > listOfTasks.list.length){
+  else if(number > listOfTasks.list.length){// throw an error if the entered number does not exist in the list
     console.log("ERROR: task number is out of range");
   }
   else{
-    if(listOfTasks.list[number-1].status == false){
+    if(listOfTasks.list[number-1].status == false){ // checks if the status is false will turn it to true and the opposite
       listOfTasks.list[number-1].status = true;
     }
     else{
