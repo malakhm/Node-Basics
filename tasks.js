@@ -93,8 +93,9 @@ function hello(text){// functio hello takes text as argument and return it with 
  * @returns {void}
  */
 
-function list(){
-  for(let i = 0; i < listOfTasks.length; i++){
+function list(){// this functio lists  all the tasks by accending order
+  for(let i = 0; i < listOfTasks.length; i++){ // 'loop through the tasks and adds a
+                                                //number to each task with a specific format => 1 [] drink milk
     console.log(i+1 + "[ ]"+listOfTasks[i]);
   }
  
@@ -103,8 +104,8 @@ function list(){
  * @returns {void}
  */
 
-function add(task){
-  if(task == "" || task == " ")
+function add(task){  // this function adds tasks to the list
+  if(task == "" || task == " ")// checks if the user enters add "" or add with a space  it will generate an error
   {
     console.log('ERROR: task cannot be empty');
     return;
@@ -119,12 +120,12 @@ function add(task){
  * @returns {void}
  */
 
-function remove(taskNumber){
+function remove(taskNumber){ 
   console.log(taskNumber);
-  if(taskNumber == "" || taskNumber == " "){
+  if(taskNumber == "" || taskNumber == " "){ // if the task number is empty , it will assign it to zero
     taskNumber = 0;
   }
-  listOfTasks.splice(taskNumber-1,1);
+  listOfTasks.splice(taskNumber-1,1); // it will remove the task from the index entered , so if we enter remove 1, it will remove the first element in the list that has index 0 ( 1-1=0)
   console.log('task removed');
 
 }
@@ -136,7 +137,7 @@ function remove(taskNumber){
 
 // this function lists all possible commands
 function help(){
-  console.log('list of commands: \n hello \n hello + your customized text \n help \n quit \n exit \n')
+  console.log('list of commands: \n-hello \n-hello + your customized text \n-add + your task(to add a task) \n-remove + the number of the task to remove \n-list(to list all the tasks) \n-help \n-quit \n-exit\n')
 }
 
 /**
