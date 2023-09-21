@@ -59,8 +59,12 @@ function onDataReceived(text) {
     list();
   }
   else if(txt === 'remove'){
-    const taskToRemove = text.substring(6).trim();
+    var taskToRemove = text.substring(6).trim();
     remove(taskToRemove);
+  }
+  else if(txt === 'edit'){
+    var newTask = text.substring(4).trim();
+    edit(newTask);
   }
   else{
     unknownCommand(text);
@@ -138,6 +142,32 @@ function remove(taskNumber){
 
 }
 
+function edit(newtask){
+
+  if(newtask == "" || newtask == " "){
+    console.log('ERROR: task cannot be empty');
+    return;
+  }
+
+  if(isNaN(newtask[0]))
+  {
+    console.log(listOfTasks[listOfTasks.length-1])
+    listOfTasks[listOfTasks.length-1] = newtask
+    console.log('task edited:  '+ listOfTasks);
+  }
+
+  else if(newtask[0] > listOfTasks.length)
+  {
+    console.log("Task doesn't exist, if you wanna add a new task, insert add + your task!!");
+  }
+  else
+  {
+    listOfTasks[newtask[0]-1] = newtask.substring(1).trim();
+    console.log('task edited:  '+ listOfTasks);
+  }
+
+  
+}
 /**
  * @returns {void}
  */
