@@ -121,12 +121,20 @@ function add(task){  // this function adds tasks to the list
  */
 
 function remove(taskNumber){ 
+  
   console.log(taskNumber);
   if(taskNumber == "" || taskNumber == " "){ // if the task number is empty , it will assign it to zero
     taskNumber = 0;
+    console.log(taskNumber+ 'last task removed');
   }
+  else if(taskNumber > listOfTasks.length){
+    console.log("ERROR: task number is out of range");
+  }else{console.log('task removed');}
+  
   listOfTasks.splice(taskNumber-1,1); // it will remove the task from the index entered , so if we enter remove 1, it will remove the first element in the list that has index 0 ( 1-1=0)
-  console.log('task removed');
+  
+  
+  
 
 }
 
