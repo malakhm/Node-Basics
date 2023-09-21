@@ -34,8 +34,10 @@ function startApp(name){
  * @returns {void}
  */
 
-var listOfTasks = [];
+var listOfTasks = {"list":[]};
 function onDataReceived(text) {
+
+
   
   const txt = text.split(" ")[0].trim(); //this splits the entered string , takes the first index and removes white spaces
   // console.log(text.split(" ")[0].trim());
@@ -66,6 +68,13 @@ function onDataReceived(text) {
     var newTask = text.substring(4).trim();
     edit(newTask);
   }
+
+  else if (txt === 'check'){
+    var taskToCheck = text.substring(5).trim();
+    check(taskToCheck);
+  }
+
+
   else{
     unknownCommand(text);
   }
@@ -98,9 +107,12 @@ function hello(text){// functio hello takes text as argument and return it with 
  */
 
 function list(){// this functio lists  all the tasks by accending order
-  for(let i = 0; i < listOfTasks.length; i++){ // 'loop through the tasks and adds a
+  for(let i = 0; i < listOfTasks.list.length; i++){ // 'loop through the tasks and adds a
                                                 //number to each task with a specific format => 1 [] drink milk
-    console.log(i+1 + "[ ]"+listOfTasks[i]);
+    if(listOfTasks.list[i].status == false){
+      console.log(i+1 + "[ ]" + listOfTasks.list[i].name);
+    }else{console.log(i+1 + "[✓]" + listOfTasks.list[i].name);}
+    
   }
  
 }
@@ -114,7 +126,8 @@ function add(task){  // this function adds tasks to the list
     console.log('ERROR: task cannot be empty');
     return;
   }
-  listOfTasks.push(task);
+  listOfTasks.list.push({name:task,status:false});
+  console.log("list of task ",listOfTasks.list)
   console.log('task: '+ task + ' added successfully');
 
 
@@ -131,11 +144,11 @@ function remove(taskNumber){
     taskNumber = 0;
     console.log(taskNumber+ 'last task removed');
   }
-  else if(taskNumber > listOfTasks.length){
+  else if(taskNumber > listOfTasks.list.length){
     console.log("ERROR: task number is out of range");
   }else{console.log('task removed');}
   
-  listOfTasks.splice(taskNumber-1,1); // it will remove the task from the index entered , so if we enter remove 1, it will remove the first element in the list that has index 0 ( 1-1=0)
+  listOfTasks.list.splice(taskNumber-1,1); // it will remove the task from the index entered , so if we enter remove 1, it will remove the first element in the list that has index 0 ( 1-1=0)
   
   
   
@@ -149,24 +162,45 @@ function edit(newtask){
     return;
   }
 
-  if(isNaN(newtask[0]))
+  else if(isNaN(newtask[0]))
   {
-    console.log(listOfTasks[listOfTasks.length-1])
-    listOfTasks[listOfTasks.length-1] = newtask
-    console.log('task edited:  '+ listOfTasks);
+    console.log(listOfTasks.list[listOfTasks.list.length-1].name)
+    listOfTasks.list[listOfTasks.list.length-1].name = newtask
+    console.log('task edited:  '+ listOfTasks.list.name);
   }
 
-  else if(newtask[0] > listOfTasks.length)
+  else if(newtask[0] > listOfTasks.list.length)
   {
     console.log("Task doesn't exist, if you wanna add a new task, insert add + your task!!");
   }
   else
   {
-    listOfTasks[newtask[0]-1] = newtask.substring(1).trim();
-    console.log('task edited:  '+ listOfTasks);
+    listOfTasks.list[newtask[0]-1].name = newtask.substring(1).trim();
+    
   }
 
   
+}
+
+
+function check(number){
+  var mode =  false;
+  if(number == "" || number == " "){
+    console.log("ERROR: please enter a valid number");
+  }
+  else if(number > listOfTasks.list.length){
+    console.log("ERROR: task number is out of range");
+  }
+  else{
+    if(listOfTasks.list[number-1].status == false){
+      listOfTasks.list[number-1].status = true;
+    }
+    else{
+      listOfTasks.list[number-1].status = false;
+    }
+     
+
+  }console.log(listOfTasks.list)
 }
 /**
  * @returns {void}
@@ -177,6 +211,13 @@ function edit(newtask){
 function help(){
   console.log('list of commands: \n-hello \n-hello + your customized text \n-add + your task(to add a task) \n-remove + the number of the task to remove \n-list(to list all the tasks) \n-help \n-quit \n-exit\n')
 }
+
+
+// var task =
+// {
+//   name: "drink milk",
+//   status: true,
+// }
 
 /**
  * Exits the application
