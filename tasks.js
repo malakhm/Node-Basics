@@ -58,6 +58,10 @@ function onDataReceived(text) {
   else if(text === 'list\n'){
     list();
   }
+  else if(txt === 'remove'){
+    const taskToRemove = text.substring(6).trim();
+    remove(taskToRemove);
+  }
   else{
     unknownCommand(text);
   }
@@ -100,8 +104,13 @@ function list(){
  */
 
 function add(task){
+  if(task == "" || task == " ")
+  {
+    console.log('ERROR: task cannot be empty');
+    return;
+  }
   listOfTasks.push(task);
-  console.log('task added');
+  console.log('task: '+ task + ' added successfully');
 
 
 }
@@ -110,8 +119,14 @@ function add(task){
  * @returns {void}
  */
 
-function remove(){
-  
+function remove(taskNumber){
+  console.log(taskNumber);
+  if(taskNumber == "" || taskNumber == " "){
+    taskNumber = 0;
+  }
+  listOfTasks.splice(taskNumber-1,1);
+  console.log('task removed');
+
 }
 
 /**
