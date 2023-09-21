@@ -209,7 +209,7 @@ function check(number){
 
 // this function lists all possible commands
 function help(){
-  console.log('list of commands: \n-hello \n-hello + your customized text \n-add + your task(to add a task) \n-remove + the number of the task to remove \n-list(to list all the tasks) \n-help \n-quit \n-exit\n')
+  console.log('list of commands: \n-hello \n-hello + your customized text \n-add + your task(to add a task) \n-remove + the number of the task to remove \n-list(to list all the tasks)\n-check + number of the task(to check/uncheck) \n-help \n-quit \n-exit\n')
 }
 
 
